@@ -1,0 +1,18 @@
+{
+  "scenario": "29_morfologico",
+  "source": "Z:\\Banco de dados Preditor Br\\03_preditor_06092026\\03_outputs\\cenarios\\29_morfologico\\step04\\consolidado\\04_final_consolidado.geoparquet",
+  "source_mtime": 1781055736.4488392,
+  "tile_zoom": 12,
+  "schema_version": 2,
+  "tile_count": 537,
+  "point_count": 3080407,
+  "format": "json.gz",
+  "bounds": [
+    -55.176506797552875,
+    -25.917974587294573,
+    -38.22554408714933,
+    0.8802992338215802
+  ],
+  "topn": 7,
+  "created_at": "2026-06-10T11:52:08"
+}

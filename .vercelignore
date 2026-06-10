@@ -1,0 +1,6 @@
+antigos/
+*.log
+__pycache__/
+*.gpkg
+*.zip
+*.tmp
