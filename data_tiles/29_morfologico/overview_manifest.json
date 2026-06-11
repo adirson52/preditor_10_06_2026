@@ -2,8 +2,8 @@
   "scenario": "29_morfologico",
   "schema_version": 2,
   "source_tile_schema_version": 2,
-  "source_point_count": 3080407,
-  "source_tile_count": 537,
+  "source_point_count": 3083130,
+  "source_tile_count": 538,
   "zooms": [
     6,
     7,
@@ -12,14 +12,14 @@
     10,
     11
   ],
-  "tile_count": 479,
-  "drawn_points": 3080407,
+  "tile_count": 463,
+  "drawn_points": 3083130,
   "class_counts": {
-    "other": 2674211,
-    "attention": 101546,
-    "priority": 101552,
-    "mappedFcu": 203098
+    "other": 2683282,
+    "mappedFcu": 199924,
+    "attention": 99959,
+    "priority": 99965
   },
   "format": "png",
-  "created_at": "2026-06-09T22:22:33"
+  "created_at": "2026-06-11T00:08:40"
 }

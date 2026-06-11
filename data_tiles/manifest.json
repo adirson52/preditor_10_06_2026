@@ -3,38 +3,38 @@
     "29_completo": {
       "scenario": "29_completo",
       "source": "Z:\\Banco de dados Preditor Br\\03_preditor_06092026\\03_outputs\\cenarios\\29_completo\\step04\\consolidado\\04_final_consolidado.geoparquet",
-      "source_mtime": 1781055577.3727016,
+      "source_mtime": 1781143400.3463187,
       "tile_zoom": 12,
       "schema_version": 2,
-      "tile_count": 537,
-      "point_count": 3080407,
+      "tile_count": 538,
+      "point_count": 3083130,
       "format": "json.gz",
       "bounds": [
-        -55.176506797552875,
+        -52.54282109566724,
         -25.917974587294573,
         -38.22554408714933,
         0.8802992338215802
       ],
       "topn": 7,
-      "created_at": "2026-06-10T11:50:14"
+      "created_at": "2026-06-11T00:02:13"
     },
     "29_morfologico": {
       "scenario": "29_morfologico",
       "source": "Z:\\Banco de dados Preditor Br\\03_preditor_06092026\\03_outputs\\cenarios\\29_morfologico\\step04\\consolidado\\04_final_consolidado.geoparquet",
-      "source_mtime": 1781055736.4488392,
+      "source_mtime": 1781146477.54607,
       "tile_zoom": 12,
       "schema_version": 2,
-      "tile_count": 537,
-      "point_count": 3080407,
+      "tile_count": 538,
+      "point_count": 3083130,
       "format": "json.gz",
       "bounds": [
-        -55.176506797552875,
+        -52.54282109566724,
         -25.917974587294573,
         -38.22554408714933,
         0.8802992338215802
       ],
       "topn": 7,
-      "created_at": "2026-06-10T11:52:08"
+      "created_at": "2026-06-11T00:06:22"
     }
   },
   "overview_tiles": {
@@ -42,8 +42,8 @@
       "scenario": "29_completo",
       "schema_version": 2,
       "source_tile_schema_version": 2,
-      "source_point_count": 3080407,
-      "source_tile_count": 537,
+      "source_point_count": 3083130,
+      "source_tile_count": 538,
       "zooms": [
         6,
         7,
@@ -52,23 +52,23 @@
         10,
         11
       ],
-      "tile_count": 479,
-      "drawn_points": 3080407,
+      "tile_count": 463,
+      "drawn_points": 3083130,
       "class_counts": {
-        "other": 2674211,
-        "attention": 101546,
-        "priority": 101552,
-        "mappedFcu": 203098
+        "priority": 99965,
+        "other": 2683282,
+        "mappedFcu": 199924,
+        "attention": 99959
       },
       "format": "png",
-      "created_at": "2026-06-09T22:18:36"
+      "created_at": "2026-06-11T00:04:29"
     },
     "29_morfologico": {
       "scenario": "29_morfologico",
       "schema_version": 2,
       "source_tile_schema_version": 2,
-      "source_point_count": 3080407,
-      "source_tile_count": 537,
+      "source_point_count": 3083130,
+      "source_tile_count": 538,
       "zooms": [
         6,
         7,
@@ -77,16 +77,16 @@
         10,
         11
       ],
-      "tile_count": 479,
-      "drawn_points": 3080407,
+      "tile_count": 463,
+      "drawn_points": 3083130,
       "class_counts": {
-        "other": 2674211,
-        "attention": 101546,
-        "priority": 101552,
-        "mappedFcu": 203098
+        "other": 2683282,
+        "mappedFcu": 199924,
+        "attention": 99959,
+        "priority": 99965
       },
       "format": "png",
-      "created_at": "2026-06-09T22:22:33"
+      "created_at": "2026-06-11T00:08:40"
     }
   },
   "id_lookup": {
@@ -108,10 +108,10 @@
         "lat",
         "lng"
       ],
-      "shard_count": 4007,
-      "point_count": 3080407,
-      "tile_count": 537,
-      "created_at": "2026-06-09T22:17:51"
+      "shard_count": 4011,
+      "point_count": 3083130,
+      "tile_count": 538,
+      "created_at": "2026-06-11T00:03:41"
     },
     "29_morfologico": {
       "scenario": "29_morfologico",
@@ -131,10 +131,10 @@
         "lat",
         "lng"
       ],
-      "shard_count": 4007,
-      "point_count": 3080407,
-      "tile_count": 537,
-      "created_at": "2026-06-09T22:21:47"
+      "shard_count": 4011,
+      "point_count": 3083130,
+      "tile_count": 538,
+      "created_at": "2026-06-11T00:07:52"
     }
   },
   "fcu_geojson": "Z:\\Banco de dados Preditor Br\\03_preditor_06092026\\03_outputs\\05_dashboard\\data_tiles\\fcus_areas_estudo.geojson"

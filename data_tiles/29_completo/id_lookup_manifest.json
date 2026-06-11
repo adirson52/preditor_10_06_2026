@@ -16,8 +16,8 @@
     "lat",
     "lng"
   ],
-  "shard_count": 4007,
-  "point_count": 3080407,
-  "tile_count": 537,
-  "created_at": "2026-06-09T22:17:51"
+  "shard_count": 4011,
+  "point_count": 3083130,
+  "tile_count": 538,
+  "created_at": "2026-06-11T00:03:41"
 }

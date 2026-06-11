@@ -2,9 +2,3 @@
 antigos/
 .DS_Store
 Thumbs.db
-*.gpkg
-*.zip
-*.tmp
-__pycache__/
-
-.vercel

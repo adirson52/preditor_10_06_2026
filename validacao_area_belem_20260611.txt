@@ -1,0 +1,37 @@
+Validacao area_rgint_belem - base 29 corrigida
+
+Data da rodada: 2026-06-11
+
+Resumo:
+- Base usada pelo pipeline: 29_grade_50m_base_final_brasil_buildings_app_vias_cnefe_bf_corrigido_gba_saneada_area_belem_corrigida.parquet
+- area_rgint_belem corrigida pelos 24 codigos oficiais de municipio.
+- Celulas no recorte final de Belem: 206.709
+- Positivos has_fcu_centroid em Belem: 57.673
+- Municipios distintos em Belem: 24
+- rank_class validado no GeoParquet e GPKG finais, com classes 1 a 50 por area de estudo.
+
+Municipios finais em area_rgint_belem:
+1500107 Abaetetuba
+1500206 Acara
+1500305 Afua
+1500800 Ananindeua
+1501303 Barcarena
+1501402 Belem
+1501501 Benevides
+1501907 Bujaru
+1502103 Cameta
+1502608 Colares
+1502756 Concordia do Para
+1503309 Igarape-Miri
+1504000 Limoeiro do Ajuru
+1504422 Marituba
+1504604 Mocajuba
+1504703 Moju
+1505205 Oeiras do Para
+1506351 Santa Barbara do Para
+1506500 Santa Izabel do Para
+1507003 Santo Antonio do Taua
+1507102 Sao Caetano de Odivelas
+1507953 Tailandia
+1508001 Tome-Acu
+1508209 Vigia
