@@ -2389,7 +2389,6 @@ window.addEventListener('unhandledrejection', function(event) {
       tapMap: 'toque para usar',
       tapChart: 'toque para explorar',
       band: 'Faixa',
-      missingBand: 'sem célula nessa faixa',
       variable: 'Variável',
       sigla: 'Sigla',
       description: 'Descrição',
@@ -2451,7 +2450,6 @@ window.addEventListener('unhandledrejection', function(event) {
         tapMap: 'tap to use',
         tapChart: 'tap to explore',
         band: 'Band',
-        missingBand: 'no cell in this band',
         variable: 'Variable',
         sigla: 'Code',
         description: 'Description',
@@ -3015,32 +3013,48 @@ window.addEventListener('unhandledrejection', function(event) {
   function setBandChipLabel(chip, sample, bandLabel) {
     if (!chip || !sample || !bandLabel) return;
     chip.dataset.band = bandLabel;
+    chip.dataset.id = sampleId(sample);
     const prefix = `${mapText('band')} ${bandLabel}`;
     chip.title = prefix;
     chip.innerText = `${prefix} - ${sample.id} (${percentLabel(sample.proba)})`;
   }
 
-  function createEmptyBandChip(bandLabel) {
-    const el = document.createElement('div');
-    el.className = 'chip';
-    el.dataset.band = bandLabel;
-    el.dataset.emptyBand = '1';
-    el.style.borderLeftColor = '#cbd5e1';
-    el.style.color = '#64748b';
-    el.style.cursor = 'default';
-    el.title = `${mapText('band')} ${bandLabel}`;
-    el.innerText = `${mapText('band')} ${bandLabel} - ${mapText('missingBand')}`;
-    return el;
+  function sampleId(sample) {
+    return String(sample && sample.id !== undefined && sample.id !== null ? sample.id : '');
+  }
+
+  function sampleProb(sample) {
+    const value = Number(sample && sample.proba);
+    return Number.isFinite(value) ? value : 0;
+  }
+
+  function sampleInBand(sample, band) {
+    const p = sampleProb(sample);
+    return p >= band.lo && p < band.hi;
+  }
+
+  function pickBandSample(pool, band, usedIds) {
+    const all = (pool || []).filter(s => sampleId(s));
+    const available = all.filter(s => !usedIds.has(sampleId(s)));
+    const source = available.length ? available : all;
+    const exact = source.find(s => sampleInBand(s, band));
+    if (exact) return exact;
+
+    const upper = source
+      .filter(s => sampleProb(s) >= band.hi)
+      .sort((a, b) => (sampleProb(a) - sampleProb(b)) || sampleId(a).localeCompare(sampleId(b)));
+    if (upper.length) return upper[0];
+
+    const lower = source
+      .filter(s => sampleProb(s) < band.lo)
+      .sort((a, b) => (sampleProb(b) - sampleProb(a)) || sampleId(a).localeCompare(sampleId(b)));
+    return lower[0] || source[0] || null;
   }
 
   function refreshBandChipLabels() {
     if (typeof App === 'undefined' || !App.currentPolo) return;
     const samples = App.currentPolo.local_explanations || [];
     document.querySelectorAll('#suggestions-container .chip[data-band]').forEach(chip => {
-      if (chip.dataset.emptyBand === '1') {
-        chip.innerText = `${mapText('band')} ${chip.dataset.band} - ${mapText('missingBand')}`;
-        return;
-      }
       const sample = samples.find(s => String(s.id || '') === String(chip.dataset.id || ''));
       if (sample) setBandChipLabel(chip, sample, chip.dataset.band);
     });
@@ -3076,11 +3090,11 @@ window.addEventListener('unhandledrejection', function(event) {
       {label: '50-60%', lo: 0.50, hi: 0.60}
     ];
     const bandItems = [];
+    const fallbackPool = candidates.length ? candidates : sorted;
+    const usedIds = new Set();
     bands.forEach(band => {
-      const pick = candidates.find(s => {
-        const p = Number(s.proba) || 0;
-        return p >= band.lo && p < band.hi;
-      });
+      const pick = pickBandSample(fallbackPool, band, usedIds);
+      if (pick) usedIds.add(sampleId(pick));
       bandItems.push({sample: pick || null, label: band.label});
     });
     const picks = bandItems.filter(item => item.sample);
@@ -3091,8 +3105,6 @@ window.addEventListener('unhandledrejection', function(event) {
         const chip = createChip(item.sample, true);
         setBandChipLabel(chip, item.sample, item.label);
         suggestionArea.appendChild(chip);
-      } else {
-        suggestionArea.appendChild(createEmptyBandChip(item.label));
       }
     });
 
