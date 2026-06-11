@@ -2288,7 +2288,7 @@ window.addEventListener('unhandledrejection', function(event) {
     const yf = (1 - Math.log(Math.tan(latRad) + 1 / Math.cos(latRad)) / Math.PI) / 2 * n;
     const x = Math.max(0, Math.min(n - 1, Math.floor(xf)));
     const y = Math.max(0, Math.min(n - 1, Math.floor(yf)));
-    return {x, y, px: Math.floor((xf - x) * 256), py: Math.floor((yf - y) * 256)};
+    return {x, y, px: (xf - x) * 256, py: (yf - y) * 256};
   }
 
   function pointToSample(p) {
@@ -3205,8 +3205,12 @@ window.addEventListener('unhandledrejection', function(event) {
       fetchTile(sourceX, sourceY).then(data => {
         const points = data.p || [];
         for (const p of points) {
-          const x = p.x * scale - offsetX * 256;
-          const y = p.y * scale - offsetY * 256;
+          const lat = Number(p.lat);
+          const lng = Number(p.lng);
+          if (!Number.isFinite(lat) || !Number.isFinite(lng)) continue;
+          const projected = App.map.project([lat, lng], coords.z);
+          const x = projected.x - coords.x * size.x;
+          const y = projected.y - coords.y * size.y;
           if (x < -6 || x > 262 || y < -6 || y > 262) continue;
           const cls = candidateClass(p, p.a || fallbackAreaCol);
           if (!cls.alpha || cls.alpha <= 0) continue;
@@ -3311,8 +3315,9 @@ window.addEventListener('unhandledrejection', function(event) {
       for (const p of (data.p || [])) {
         const cls = candidateClass(p, p.a || fallbackAreaCol);
         if (!cls.alpha || cls.alpha <= 0) continue;
-        const dx = Number(p.x) - c.px;
-        const dy = Number(p.y) - c.py;
+        const pc = tileCoord(Number(p.lat), Number(p.lng), TILE_Z);
+        const dx = pc.px - c.px;
+        const dy = pc.py - c.py;
         const d = dx * dx + dy * dy;
         if (d < bestD) {
           bestD = d;
