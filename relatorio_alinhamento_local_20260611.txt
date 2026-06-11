@@ -1,0 +1,38 @@
+Validacao local de alinhamento - 2026-06-11
+
+Arquivos avaliados:
+- GPKG completo: Z:\Banco de dados Preditor Br\03_preditor_06092026\03_outputs\cenarios\29_completo\step04\consolidado\04_final_consolidado.gpkg
+- GPKG morfologico: Z:\Banco de dados Preditor Br\03_preditor_06092026\03_outputs\cenarios\29_morfologico\step04\consolidado\04_final_consolidado.gpkg
+- GeoParquet completo: Z:\Banco de dados Preditor Br\03_preditor_06092026\03_outputs\cenarios\29_completo\step04\consolidado\04_final_consolidado.geoparquet
+- FCU oficial: Z:\IBGE_vs02_github\03_grade_urbanizada_fcu\01_data_input\06_fcus_unificadas.parquet
+- Dashboard local: Z:\Banco de dados Preditor Br\03_preditor_06092026\03_outputs\05_dashboard
+
+Conclusao:
+- Nao foi encontrado deslocamento sistematico entre GPKG e parquet final.
+- Os GPKGs finais usam CRS EPSG:4674/SIRGAS 2000 e geometria Polygon.
+- Amostras de IDs em Afua bateram exatamente entre GeoParquet e GPKG, com delta geometrico 0.
+- A camada de pontos do HTML agora desenha por lat/lng usando Leaflet project() em tempo de renderizacao.
+- A camada FCU do dashboard usa GeoJSON sem simplificacao e cache-buster 20260611_fcu_original.
+
+Checagens espaciais principais:
+- Afua: 426/426 celulas target intersectam a FCU oficial. Centro das targets a 163,2 m do centro da FCU.
+- Laranjal do Jari: 875/875 celulas target intersectam a FCU oficial. Centro das targets a 45,2 m do centro da FCU.
+- Redencao: 1854/1854 celulas target intersectam a FCU oficial. Centro das targets a 262,5 m do centro da FCU.
+- Goiania: 1988/2021 celulas target intersectam a FCU oficial; ha 33 celulas target fora da referencia FCU atual, mas GPKG e parquet continuam coincidindo.
+
+Interpretacao visual:
+- Em Afua, a FCU oficial fica a leste da etiqueta/ruas principais do OpenStreetMap.
+- Os pontos vermelhos/amarelos sao candidatos do modelo, nao a FCU oficial. Portanto podem aparecer fora do poligono FCU ja mapeado.
+- O que parecia deslocamento no mapa era uma combinacao de referencia OSM x FCU oficial e, em alguns casos, centro/zoom preservado ao ampliar/reduzir o mapa.
+
+Correcao local aplicada:
+- Ao ampliar ou reduzir o mapa, o dashboard agora invalida o tamanho do Leaflet e recentraliza na amostra selecionada.
+- Isso evita que o popup/pontos parecam sair do lugar depois de zoom manual ou troca de tamanho do painel.
+
+Arquivos auxiliares:
+- HTML diagnostico: Z:\Banco de dados Preditor Br\03_preditor_06092026\03_outputs\05_dashboard\debug_alinhamento\diagnostico_alinhamento_local.html
+- CSV resumo: Z:\Banco de dados Preditor Br\03_preditor_06092026\03_outputs\05_dashboard\debug_alinhamento\diagnostico_alinhamento_resumo.csv
+
+Status:
+- Validado localmente.
+- Nao foi feito novo upload para GitHub/Vercel nesta etapa.

@@ -2787,7 +2787,16 @@ window.addEventListener('unhandledrejection', function(event) {
     App.overviewLayer.addTo(App.map);
   }
 
-  function invalidateMapSoon(delay = 120) {
+  function recenterSelectedSample(keepZoom = true) {
+    if (!App.map || !App.selectedSample) return;
+    const lat = Number(App.selectedSample.lat);
+    const lng = Number(App.selectedSample.lng);
+    if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+    const zoom = keepZoom ? Math.max(App.map.getZoom() || TILE_Z, TILE_Z) : TILE_Z;
+    App.map.setView([lat, lng], zoom, {animate: false});
+  }
+
+  function invalidateMapSoon(delay = 120, recenter = false) {
     window.clearTimeout(mapResizeTimer);
     mapResizeTimer = window.setTimeout(() => {
       if (!App.map) return;
@@ -2796,6 +2805,7 @@ window.addEventListener('unhandledrejection', function(event) {
       } catch (err) {
         App.map.invalidateSize();
       }
+      if (recenter) recenterSelectedSample(true);
       if (App.allPointsLayer) App.allPointsLayer.redraw();
     }, delay);
   }
@@ -2818,7 +2828,7 @@ window.addEventListener('unhandledrejection', function(event) {
     }
     refreshMapSizeButton();
     refreshTouchInteractionGates();
-    invalidateMapSoon(160);
+    invalidateMapSoon(160, true);
   }
 
   function ensureMapSizeControl() {
