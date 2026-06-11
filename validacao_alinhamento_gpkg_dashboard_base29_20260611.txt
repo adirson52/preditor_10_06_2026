@@ -1,0 +1,20 @@
+Validacao de alinhamento Base 29 / Dashboard / GPKG
+Data: 2026-06-11 14:23:24
+Status geometria/target fonte->final: OK
+Status GPKG final->parquet: OK (amostra espacial 40 celulas, 8 areas, 2 cenarios; delta centroide = 0)
+Observacao FCU dashboard: 34 positivos de 199924 nao intersectam o GeoJSON FCU atual (0.0170%). Nao e deslocamento do GPKG; target final e identico ao has_fcu_centroid da base fonte.
+Base fonte: Z:\Banco de dados Preditor Br\02_Brasil\29_grade_50m_base_final_brasil_buildings_app_vias_cnefe_bf_corrigido_gba_saneada_area_belem_corrigida.parquet
+Final consolidado auditado: Z:\Banco de dados Preditor Br\03_preditor_06092026\03_outputs\cenarios\29_completo\step04\consolidado\04_final_consolidado.geoparquet
+FCU dashboard sem simplificacao: Z:\Banco de dados Preditor Br\03_preditor_06092026\03_outputs\05_dashboard\data_tiles\fcus_areas_estudo.geojson
+
+                    area_col               area_name  final_rows  source_rows_area_flag  source_only_ids  final_only_ids  source_target_1  final_target_1  target_diff_on_common_ids  fcu_features_dashboard  target1_centroid_inside_dashboard_fcu  target1_intersects_dashboard_fcu  target1_no_intersection_dashboard_fcu
+         area_rgint_redencao          RGInt Redencao       74553                  74553                0               0             1889            1889                          0                      11                                   1889                              1889                                      0
+      area_conc_urb_curitiba       Conc Urb Curitiba      363467                 363467                0               0            15579           15579                          0                     635                                  15579                             15579                                      0
+     area_conc_urb_fortaleza      Conc Urb Fortaleza      257306                 257306                0               0            17625           17625                          0                     695                                  17625                             17625                                      0
+       area_conc_urb_goiania        Conc Urb Goiania      306292                 306292                0               0             3441            3441                          0                      95                                   3408                              3408                                     33
+     area_conc_urb_sao_paulo      Conc Urb Sao Paulo     1015035                1015035                0               0            51022           51022                          0                    2836                                  51022                             51022                                      0
+           area_rgint_macapa            RGInt Macapa       60100                  60100                0               0             8468            8468                          0                     123                                   8468                              8468                                      0
+            area_rgint_belem             RGInt Belem      206709                 206709                0               0            57673           57673                          0                     515                                  57673                             57673                                      0
+area_conc_urb_rio_de_janeiro Conc Urb Rio de Janeiro      799668                 799668                0               0            44227           44227                          0                    1395                                  44226                             44226                                      1
+
+Criterios: final por scope deve ter os mesmos IDs da base fonte com area_col=1; target final deve ser igual a has_fcu_centroid; GPKG deve reproduzir a geometria do parquet; FCU do dashboard e uma camada de referencia visual.
