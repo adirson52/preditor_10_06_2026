@@ -1,9 +1,10 @@
 {
   "scenario": "29_completo",
-  "schema_version": 2,
-  "source_tile_schema_version": 2,
+  "schema_version": 3,
+  "source_tile_schema_version": 3,
   "source_point_count": 3083130,
   "source_tile_count": 538,
+  "source_created_at": "2026-06-11T12:20:49",
   "zooms": [
     6,
     7,
@@ -21,5 +22,5 @@
     "attention": 99959
   },
   "format": "png",
-  "created_at": "2026-06-11T00:04:29"
+  "created_at": "2026-06-11T12:22:15"
 }

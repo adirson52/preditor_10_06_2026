@@ -2224,7 +2224,7 @@ window.addEventListener('unhandledrejection', function(event) {
   const SCENARIO_KEY = "29_morfologico";
   const TILE_Z = 12;
   const TILE_BASE = `data_tiles/${SCENARIO_KEY}/points/${TILE_Z}`;
-  const OVERVIEW_BASE = `data_tiles/${SCENARIO_KEY}/overview/{z}/{x}/{y}.png`;
+  const OVERVIEW_BASE = `data_tiles/${SCENARIO_KEY}/overview/{z}/{x}/{y}.png?v=20260611_overview_v3`;
   const EMPTY_TILE = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
   const LOOKUP_PREFIX_LEN = 12;
   const LOOKUP_BASE = `data_tiles/${SCENARIO_KEY}/id_lookup/${LOOKUP_PREFIX_LEN}`;
@@ -2241,7 +2241,7 @@ window.addEventListener('unhandledrejection', function(event) {
   function fetchTile(x, y) {
     const key = `${x}/${y}`;
     if (!tileCache.has(key)) {
-      tileCache.set(key, fetch(`${TILE_BASE}/${x}/${y}.json.gz`)
+      tileCache.set(key, fetch(`${TILE_BASE}/${x}/${y}.json.gz?v=20260611_points_v3`)
         .then(r => {
           if (!r.ok) return {p: []};
           const encoding = (r.headers.get('content-encoding') || '').toLowerCase();

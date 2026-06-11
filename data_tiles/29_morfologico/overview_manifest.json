@@ -1,9 +1,10 @@
 {
   "scenario": "29_morfologico",
-  "schema_version": 2,
-  "source_tile_schema_version": 2,
+  "schema_version": 3,
+  "source_tile_schema_version": 3,
   "source_point_count": 3083130,
   "source_tile_count": 538,
+  "source_created_at": "2026-06-11T12:23:26",
   "zooms": [
     6,
     7,
@@ -21,5 +22,5 @@
     "priority": 99965
   },
   "format": "png",
-  "created_at": "2026-06-11T00:08:40"
+  "created_at": "2026-06-11T12:24:55"
 }
